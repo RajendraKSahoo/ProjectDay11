@@ -141,16 +141,23 @@ public class TabPage {
 	//This is a method to validate the success message after saving the record
 			public String validationOnSuccessMessage() throws IOException
 			{
-				/*String file="./TestData/magentodata.properties";
+				String file="./TestData/magentodata.properties";
 				PropertiesFileHandler propFileHandler = new PropertiesFileHandler();
 				HashMap<String, String> data= propFileHandler.getPropertiesAsMap(file);
 				
-				String expectedtabmessage = data.get("expectedtabmessage");*/
+				String expectedtabmessage = data.get("expectedtabmessage");
 				
-				String actualtabmessage = successmsgEle.getText().trim().replace("x", "");
-				System.out.println("The third validation on success message after saving record...");
-				System.out.println("The success message on saving the record: " +actualtabmessage);
-				//Assert.assertEquals(expectedtabmessage, actualtabmessage);
+				String actualtabmessage = successmsgEle.getText();
+					if (actualtabmessage.contains(expectedtabmessage))
+					{
+					System.out.println("The third validation on success message after saving record...");
+					System.out.println("The success message on saving the record: " +actualtabmessage);
+					Assert.assertTrue(true);
+					}
+					else
+					{
+						Assert.fail();
+					}
 				return(actualtabmessage);
 			}
 			
